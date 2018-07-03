@@ -32,9 +32,6 @@ def write_sammy_descr(url):
         rank = rankcounter
         sandwichrestaurant = rankAndTitle[0].split(':')[1]
     else:
-        if int(rankAndTitle[0]) != rankcounter:
-            print('Error: Rank/Listings do not match.')
-            break
         rank = int(rankAndTitle[0])
         sandwichrestaurant = rankAndTitle[1]
     rankcounter = rankcounter + 1
