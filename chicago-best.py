@@ -56,7 +56,7 @@ def write_sammy_descr(url):
         phonenumber = addressandnumber[1]
     #Not all restaurants have a website
     if soup.find('p', 'addy').em.a:
-        websiteurl = [p.a['href'] for p in soup.findAll('p', 'addy')]
+        websiteurl = [p.a['href'] for p in soup.findAll('p', 'addy')][0]
     else:
         websiteurl = ''
     output.writerow([rank, sandwichrestaurant, price, address, phonenumber, websiteurl])
