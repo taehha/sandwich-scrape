@@ -59,6 +59,8 @@ def write_sammy_descr(url, rankcounter):
     output.writerow([rank, sandwichrestaurant, price, address, phonenumber, websiteurl])
     return rankcounter
 		
+	
+	
 if __name__ == '__main__':
 	sammy_urls = get_sammy_urls(base_url)
 	rankcounter = 1
