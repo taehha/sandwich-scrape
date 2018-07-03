@@ -8,6 +8,8 @@ base_url = ("http://www.chicagomag.com/Chicago-Magazine/"
 						
 domainname = 'http://www.chicagomag.com'
 
+rankcounter = 1
+
 def make_soup(url):
 	html = urlopen(url).read()
 	return BeautifulSoup(html, "lxml")
@@ -65,7 +67,6 @@ if __name__ == '__main__':
 		fieldnames = ('Rank', 'Sandwich+Restaurant', 'Price', 'Address', 'PhoneNumber', 'WebsiteUrl')
 		output = csv.writer(f, delimiter = '\t')
 		output.writerow(fieldnames)
-		rankcounter = 1
 		
 		for url in sammy_urls:
 			write_sammy_descr(url)
