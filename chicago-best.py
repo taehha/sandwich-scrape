@@ -8,8 +8,6 @@ base_url = ("http://www.chicagomag.com/Chicago-Magazine/"
 						
 domainname = 'http://www.chicagomag.com'
 
-rankcounter = 1
-
 def make_soup(url):
 	html = urlopen(url).read()
 	return BeautifulSoup(html, "lxml")
@@ -22,7 +20,7 @@ def get_sammy_urls(sammy_link):
 	return sammy_urls
 
 #Writes to tsv file different info for each sandwich
-def write_sammy_descr(url):
+def write_sammy_descr(url, rankcounter):
     #Some urls contain domain name, some do not
     if url.find(domainname) == -1:
         url = 'http://www.chicagomag.com'+url
@@ -59,9 +57,11 @@ def write_sammy_descr(url):
     else:
         websiteurl = ''
     output.writerow([rank, sandwichrestaurant, price, address, phonenumber, websiteurl])
+    return rankcounter
 		
 if __name__ == '__main__':
 	sammy_urls = get_sammy_urls(base_url)
+	rankcounter = 1
 		
 	with open('data-src-best-sandwiches.tsv', 'w+') as f:
 		fieldnames = ('Rank', 'Sandwich+Restaurant', 'Price', 'Address', 'PhoneNumber', 'WebsiteUrl')
@@ -69,6 +69,6 @@ if __name__ == '__main__':
 		output.writerow(fieldnames)
 		
 		for url in sammy_urls:
-			write_sammy_descr(url)
+			rankcounter = write_sammy_descr(url, rankcounter)
 			sleep(1)
 	print('Done writing file.')
